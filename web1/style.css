@@ -1,0 +1,179 @@
+:root{
+    --black:#000;
+} 
+* {
+    margin:0; padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: none; border: none;
+    text-decoration: none;
+    /*text-tranform : dung de canh chinh kieu chu viet hoa hay viet thuong */
+    text-transform:capitalize;  /*capitalize dung de viet hoa chu cai dau */
+    transform: .2s linear;
+}
+html{
+    font-size: 62.5%;
+    /* Làm cho thao tác cuộn trang (scroll) mượt mà thay vì nhảy đột ngột.
+    Ví dụ: khi nhấp vào link nội bộ <a href="#section1">, trang sẽ cuộn từ từ đến #section1. */
+    scroll-behavior:smooth ; 
+    /* Đặt khoảng đệm khi cuộn đến một phần tử. */
+    scroll-padding-top: 6rem;
+    /* Ẩn phần tràn ngang (horizontal overflow). */
+    overflow-x: hidden;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+header{
+    position:fixed;/*vi tri duoc nam co dinh ke ca khi cuon trang */
+    top:0;left: 0;right:0;
+    background: #fff;
+    padding: 2rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;/* chia lop , lop lon se nam de len lop duoi */
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+header .logo {
+    font-size: 3rem;
+    color :#333;
+    font-weight: bolder;
+}
+header .logo span {
+    color : var(--black)
+} 
+header .navbar a{
+    font-size: 2rem;
+    padding: 0 1.5rem;
+    color: #666;
+}
+header .navbar a:hover {
+    color:var(--black);
+}
+header .icon a {
+    font-size: 3rem;
+    padding:0 1.5rem;
+    color: #666;
+}
+header .icon a:hover {
+    color:var(--black);
+}
+header #toggler {
+    display: none;
+}
+header .fa-bars {
+    font-size: 3rem;
+    color: #333;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+.home {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    background:url(/picture/hinhmaytinh.avif) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.home .content{
+    max-width: 70%;
+}
+.home .content h3{
+    font-size: 6rem;
+    color:white;
+}
+.home .content span{
+    font-size: 3.5rem;
+    color: whitesmoke;
+    padding: 1rem;
+    line-height: 1.5;
+}
+.home .content p{
+    font-size: 1.5rem;
+    color:whitesmoke;
+    padding: 1rem;
+    line-height: 1.5;
+    text-shadow: #666;
+}
+.home .content .btn{
+   display:inline-block;
+   margin-top: 1rem;
+   border-radius: 5rem;
+   background-color: whitesmoke;
+   padding: .9rem 3.5rem;
+   cursor: pointer;   /*thay doi con tro khi di chuyen vao */
+   font-size: 1.7rem;
+   color:black; 
+}
+.home .content .btn:hover{
+    background-color: black;
+    color: #fff;
+}
+.icons-container .icon img {
+  max-width: 100%;  /* không cho vượt quá chiều rộng khung */
+  height: auto;     /* giữ tỉ lệ gốc */
+  display: block;   /* tránh bị khoảng trắng thừa khi là inline */
+}
+.icons-container {
+    background: white;
+    
+    display: flex;
+    flex-wrap: wrap;
+     gap: 1.5rem; 
+     padding-top: 5rem; 
+    padding-bottom: 5rem; 
+} 
+.icons-container .icon {
+    background-color: #fff;
+    border:  solid rgb(0, 0, 1);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex:1 1 2.5rem;
+}
+.icons-container .icon img {
+    height: 5rem;
+    margin-right: 2rem;
+}
+.image img {
+ max-width: 100%;
+ height: 25%;   
+}
+.products .box-content{
+    display: flex;
+   flex-wrap: wrap; /*  tu dong xuong dong khi da khong du cho trong  */
+    gap: 1.5rem;
+}
+.products .box-content .box {
+    flex: 1 1 30rem;
+    box-shadow: 0 .5rem 1.5rem black;
+    border: 0.1rem solid black;
+    border-radius: .5rem;
+    position: relative;
+}
+ .products .box-content .box .discount {
+    position: absolute;
+    top:1rem ; left:1rem;
+    padding :.7rem 1rem;
+    font-size: 2rem;
+    color:var(--black);
+    background-color: white;
+    z-index: 1; /*thu tu nam de len cua phan tu  */
+    border-radius: .5rem;
+} 
+.products .box-content .box .image{
+    position: relative;
+    text-align: center;
+    padding-top: 2rem;
+    overflow: hidden;
+}
+
+.products .box-content .box:hover .image img {
+    transform: scale(1.1);
+
+}
