@@ -1,5 +1,6 @@
 package Baitapchuong4;
 
+import java.time.Year;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -212,5 +213,316 @@ public class DanhSachSinhVien {
             }
         }
         System.out.println("Khong tim thay sinh vien!");
+    }
+
+    //----Hàm tìm theo Họ(trả về danh sách tìm thấy)----
+    public SinhVien[] timTheoHo() {// ko có tham số
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ho (hoac ten mot phan) muon tim: ");
+        String hotim = sc.nextLine().toLowerCase();
+    
+        SinhVien[] ketqua = new SinhVien[0]; // mảng rỗng ban đầu
+        int dem = 0;
+    
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getHo().toLowerCase().contains(hotim)) {
+                // mở rộng mảng thêm 1 phần tử
+                ketqua = Arrays.copyOf(ketqua, dem + 1);
+                ketqua[dem] = ds[i];
+                dem++;
+            }
+        }
+    
+        if (dem == 0) {
+            System.out.println("Khong tim thay sinh vien nao co ho phu hop!");
+        } else {
+            System.out.println("Cac sinh vien tim thay:");
+            for (int i = 0; i < dem; i++) {
+                ketqua[i].xuat();
+                System.out.println("---------------------------");
+            }
+        }
+    
+        return ketqua; // trả về mảng kết quả
+    }
+    public SinhVien[] timTheoHo(String hotim) {//có tham số
+        
+        SinhVien[] ketqua = new SinhVien[0]; // mảng rỗng ban đầu
+        int dem = 0;
+    
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getHo().toLowerCase().contains(hotim)) {
+                // mở rộng mảng thêm 1 phần tử
+                ketqua = Arrays.copyOf(ketqua, dem + 1);
+                ketqua[dem] = ds[i];
+                dem++;
+            }
+        }
+    
+        if (dem == 0) {
+            System.out.println("Khong tim thay sinh vien nao co ho phu hop!");
+        } else {
+            System.out.println("Cac sinh vien tim thay:");
+            for (int i = 0; i < dem; i++) {
+                ketqua[i].xuat();
+                System.out.println("---------------------------");
+            }
+        }
+    
+        return ketqua; // trả về mảng kết quả
+    }
+
+    //----Hàm tìm theo Tên(trả về danh sách tìm thấy)----
+    public SinhVien[] timTheoTen() {// ko có tham số
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ho (hoac ten mot phan) muon tim: ");
+        String tentim = sc.nextLine().toLowerCase();
+    
+        SinhVien[] ketqua = new SinhVien[0]; // mảng rỗng ban đầu
+        int dem = 0;
+    
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getTen().toLowerCase().contains(tentim)) {
+                // mở rộng mảng thêm 1 phần tử
+                ketqua = Arrays.copyOf(ketqua, dem + 1);
+                ketqua[dem] = ds[i];
+                dem++;
+            }
+        }
+    
+        if (dem == 0) {
+            System.out.println("Khong tim thay sinh vien nao co ho phu hop!");
+        } else {
+            System.out.println("Cac sinh vien tim thay:");
+            for (int i = 0; i < dem; i++) {
+                ketqua[i].xuat();
+                System.out.println("---------------------------");
+            }
+        }
+    
+        return ketqua; // trả về mảng kết quả
+    }
+    public SinhVien[] timTheoTen(String tentim) {//có tham số
+        
+        SinhVien[] ketqua = new SinhVien[0]; // mảng rỗng ban đầu
+        int dem = 0;
+    
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getTen().toLowerCase().contains(tentim)) {
+                // mở rộng mảng thêm 1 phần tử
+                ketqua = Arrays.copyOf(ketqua, dem + 1);
+                ketqua[dem] = ds[i];
+                dem++;
+            }
+        }
+    
+        if (dem == 0) {
+            System.out.println("Khong tim thay sinh vien nao co ho phu hop!");
+        } else {
+            System.out.println("Cac sinh vien tim thay:");
+            for (int i = 0; i < dem; i++) {
+                ketqua[i].xuat();
+                System.out.println("---------------------------");
+            }
+        }
+    
+        return ketqua; // trả về mảng kết quả
+    }
+
+    //----Hàm tìm theo ĐRL(trả về danh sách tìm thấy)----
+    public SinhVien[] timTheoDrl() {// ko có tham số
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ho (hoac ten mot phan) muon tim: ");
+        int drltim = sc.nextInt();
+    
+        SinhVien[] ketqua = new SinhVien[0]; // mảng rỗng ban đầu
+        int dem = 0;
+    
+        for (int i = 0; i < siso; i++) {
+            // Kiểm tra xem sinh viên này có phải là sinh viên CQ không
+            if (ds[i] instanceof SinhVienCQ) {
+                SinhVienCQ sv = (SinhVienCQ) ds[i]; // ép kiểu để dùng getDrl()
+                if (sv.getDrl() == drltim) {
+                    ketqua = Arrays.copyOf(ketqua, dem + 1);
+                    ketqua[dem] = sv;
+                    dem++;
+                }
+            }
+        }
+    
+        if (dem == 0) {
+            System.out.println("Khong tim thay sinh vien nao co ho phu hop!");
+        } else {
+            System.out.println("Cac sinh vien tim thay:");
+            for (int i = 0; i < dem; i++) {
+                ketqua[i].xuat();
+                System.out.println("---------------------------");
+            }
+        }
+    
+        return ketqua; // trả về mảng kết quả
+    }
+    public SinhVien[] timTheoDrl(int drltim) {//có tham số
+    
+        SinhVien[] ketqua = new SinhVien[0]; // mảng rỗng ban đầu
+        int dem = 0;
+    
+        for (int i = 0; i < siso; i++) {
+            // Kiểm tra xem sinh viên này có phải là sinh viên CQ không
+            if (ds[i] instanceof SinhVienCQ) {
+                SinhVienCQ sv = (SinhVienCQ) ds[i]; // ép kiểu để dùng getDrl()
+                if (sv.getDrl() == drltim) {
+                    ketqua = Arrays.copyOf(ketqua, dem + 1);
+                    ketqua[dem] = sv;
+                    dem++;
+                }
+            }
+        }
+    
+        if (dem == 0) {
+            System.out.println("Khong tim thay sinh vien nao co ho phu hop!");
+        } else {
+            System.out.println("Cac sinh vien tim thay:");
+            for (int i = 0; i < dem; i++) {
+                ketqua[i].xuat();
+                System.out.println("---------------------------");
+            }
+        }
+    
+        return ketqua; // trả về mảng kết quả
+    }
+
+    //----Hàm tìm theo năm tốt nghiệp(trả về danh sách)----
+    public SinhVien[] timTheoNamTN() {// ko có tham số
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ho (hoac ten mot phan) muon tim: ");
+        int namTNtim = sc.nextInt();
+    
+        SinhVien[] ketqua = new SinhVien[0]; // mảng rỗng ban đầu
+        int dem = 0;
+    
+        for (int i = 0; i < siso; i++) {
+            // Kiểm tra xem sinh viên này có phải là sinh viên CQ không
+            if (ds[i] instanceof SinhVienLT) {
+                SinhVienLT sv = (SinhVienLT) ds[i]; // ép kiểu để dùng getDrl()
+                if (sv.getNamtn() == namTNtim) {
+                    ketqua = Arrays.copyOf(ketqua, dem + 1);
+                    ketqua[dem] = sv;
+                    dem++;
+                }
+            }
+        }
+    
+        if (dem == 0) {
+            System.out.println("Khong tim thay sinh vien nao co ho phu hop!");
+        } else {
+            System.out.println("Cac sinh vien tim thay:");
+            for (int i = 0; i < dem; i++) {
+                ketqua[i].xuat();
+                System.out.println("---------------------------");
+            }
+        }
+    
+        return ketqua; // trả về mảng kết quả
+    }
+    public SinhVien[] timTheoNamTN(int namTNtim) {//có tham số
+    
+        SinhVien[] ketqua = new SinhVien[0]; // mảng rỗng ban đầu
+        int dem = 0;
+    
+        for (int i = 0; i < siso; i++) {
+            // Kiểm tra xem sinh viên này có phải là sinh viên LT không
+            if (ds[i] instanceof SinhVienLT) {
+                SinhVienLT sv = (SinhVienLT) ds[i]; // ép kiểu để dùng get()
+                if (sv.getNamtn() == namTNtim) {
+                    ketqua = Arrays.copyOf(ketqua, dem + 1);
+                    ketqua[dem] = sv;
+                    dem++;
+                }
+            }
+        }
+    
+        if (dem == 0) {
+            System.out.println("Khong tim thay sinh vien nao co ho phu hop!");
+        } else {
+            System.out.println("Cac sinh vien tim thay:");
+            for (int i = 0; i < dem; i++) {
+                ketqua[i].xuat();
+                System.out.println("---------------------------");
+            }
+        }
+    
+        return ketqua; // trả về mảng kết quả
+    }
+
+    //----Hàm thống kê theo giới tính----
+    public void thongKeGioiTinh() {
+        int nam = 0, nu = 0;
+
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getGioitinh().equalsIgnoreCase("Nam")) {// kiểu này viết chữ hoa chữ thường điều được
+                nam++;
+            } else if (ds[i].getGioitinh().equalsIgnoreCase("Nu")) {
+                nu++;
+            }
+    }
+
+    System.out.println("Thong ke gioi tinh:");
+    System.out.println("Nam: " + nam);
+    System.out.println("Nu: " + nu);
+    }
+
+    //----Hàm thống kê theo tuổi----
+    public void thongKeTheoNhomTuoi() {
+        int duoi20 = 0;
+        int tu20den29 = 0;
+        int tren30 = 0;
+    
+        for (int i = 0; i < siso; i++) {
+            int tuoi = ds[i].age();  // Gọi hàm age() của từng sinh viên
+    
+            if (tuoi < 20) {
+                duoi20++;
+            } else if (tuoi < 30) {
+                tu20den29++;
+            } else {
+                tren30++;
+            }
+        }
+    
+        System.out.println("----- Thong ke theo nhom tuoi -----");
+        System.out.println("Duoi 20 tuoi: " + duoi20 + " sinh vien");
+        System.out.println("Tu 20 den 29 tuoi: " + tu20den29 + " sinh vien");
+        System.out.println("Tu 30 tuoi tro len: " + tren30 + " sinh vien");
+    }
+    
+    //----Hàm thống kê theo xếp loại drl----
+    public void thongKeTheoDrl() {
+        int duoi50 = 0;
+        int tu50den80 = 0;
+        int tren80 = 0;
+    
+        for (int i = 0; i < siso; i++) {
+            // Kiểm tra xem sinh viên này có phải là sinh viên CQ không
+            if (ds[i] instanceof SinhVienCQ){
+                SinhVienCQ sv = (SinhVienCQ) ds[i];
+                if (sv.getDrl() < 50) {
+                    duoi50++;
+                } else if (sv.getDrl() < 80) {
+                    tu50den80++;
+                } else {
+                    tren80++;
+                }
+            }
+        }
+    
+        System.out.println("----- Thong ke theo xep loai diem ren luyen -----");
+        System.out.println("Duoi 50 diem: " + duoi50 + " sinh vien");
+        System.out.println("Tu 50 den 80 diem: " + tu50den80 + " sinh vien");
+        System.out.println("Tu 80 diem tro len: " + tren80 + " sinh vien");
     }
 }
