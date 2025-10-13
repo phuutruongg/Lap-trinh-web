@@ -190,4 +190,27 @@ public class DanhSachSinhVien {
         System.out.println("Sua thong tin thanh cong!");
     }
     
+    //----Hàm Tìm----
+    public void tim() {// ko có tham số 
+        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ma SV muon tim: ");
+        long matim = sc.nextLong();
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getMssv() == matim) {
+                ds[i].xuat();
+                return;
+            }
+        }
+        System.out.println("Khong tim thay sinh vien!");
+    }
+    public void tim(long matim) {//có tham số 
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getMssv() == matim) {
+                ds[i].xuat();
+                return;
+            }
+        }
+        System.out.println("Khong tim thay sinh vien!");
+    }
 }

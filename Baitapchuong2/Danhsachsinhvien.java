@@ -71,37 +71,37 @@ public class Danhsachsinhvien {
     }
 
     public void suasv() {
-    @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
-    Scanner sc = new Scanner(System.in);
-    System.out.print("Nhap ma SV muon sua: ");
-    String masua = sc.nextLine();
-    int vitri = -1;
-    for (int i = 0; i < siso; i++) {
-        if (ds[i].getMaSV().equals(masua)) {
-            vitri = i;
-            break;
+        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ma SV muon sua: ");
+        String masua = sc.nextLine();
+        int vitri = -1;
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getMaSV().equals(masua)) {
+                vitri = i;
+                break;
+            }
         }
-    }
-    if (vitri == -1) {
-        System.out.println("Khong tim thay sinh vien!");
-        return;
-    }
+        if (vitri == -1) {
+            System.out.println("Khong tim thay sinh vien!");
+            return;
+        }
 
-    System.out.print("Nhap ho moi: ");
-    String Ho = sc.nextLine();
-    System.out.print("Nhap ten moi: ");
-    String Ten = sc.nextLine();
-    System.out.print("Nhap lop moi: ");
-    String lop = sc.nextLine();
-    System.out.print("Nhap nam sinh moi: ");
-    int namsinh = sc.nextInt();
-    sc.nextLine();
-    System.out.print("Nhap gioi tinh moi: ");
-    String gioitinh = sc.nextLine();
+        System.out.print("Nhap ho moi: ");
+        String Ho = sc.nextLine();
+        System.out.print("Nhap ten moi: ");
+        String Ten = sc.nextLine();
+        System.out.print("Nhap lop moi: ");
+        String lop = sc.nextLine();
+        System.out.print("Nhap nam sinh moi: ");
+        int namsinh = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nhap gioi tinh moi: ");
+        String gioitinh = sc.nextLine();
 
-    ds[vitri] = new SinhVien(masua, Ho, lop, Ten, namsinh, gioitinh);
+        ds[vitri] = new SinhVien(masua, Ho, lop, Ten, namsinh, gioitinh);
 
-    System.out.println("Sua thong tin thanh cong!");
+        System.out.println("Sua thong tin thanh cong!");
 }
 
     public void tim() {
