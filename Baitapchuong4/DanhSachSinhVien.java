@@ -1,0 +1,193 @@
+package Baitapchuong4;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class DanhSachSinhVien {
+    private SinhVien[] ds;
+    private int siso;
+
+    //----Ham thiet lap----
+    public DanhSachSinhVien() {
+        this.ds = new SinhVien[0];
+        this.siso = 0;
+    }
+    public DanhSachSinhVien(int siso) {
+        this.siso = siso;
+        this.ds = new SinhVien[siso];
+    }
+    public DanhSachSinhVien(DanhSachSinhVien a) {
+        this.siso = a.siso;
+        this.ds = new SinhVien[a.siso];
+        for (int i = 0; i < a.siso; i++) {
+            // Sao chép từng sinh viên (gọi hàm sao chép của SinhVienCQ hoặc SinhVien)
+            this.ds[i] = a.ds[i];
+        }
+    }
+    
+    //----Ham nhap----
+    public void nhapdssv(){
+        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap so luong sinh vien: ");
+        int n = sc.nextInt(); sc.nextLine();
+        System.out.print("\nBan muon nhap sinh vien nao ? (1.CHINH QUY; 2.LIEN THONG): ");
+        int chon = sc.nextInt();
+        ds = new SinhVien[n];
+        siso = n;
+        for (int i=0;i<n;i++){
+            if (chon == 1){
+                ds[i]= new SinhVienCQ();
+                ds[i].nhap();
+            } else{
+                ds[i]= new SinhVienLT();
+                ds[i].nhap();
+            }
+        }
+    }
+
+    //----Ham xuat----
+    public void xuatds() {
+        if (siso == 0) {
+            System.out.println("Danh sach rong!");
+            return;
+        }
+        System.out.println("----- DANH SACH SINH VIEN -----");
+        for (int i = 0; i < siso; i++) {
+            ds[i].xuat();
+            System.out.println("--------------------");
+        }
+    }
+
+    //----Ham them sinh vien----
+    public void themvaodanhsach() { //ko co tham so     
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\nBan muon them sinh vien nao ? (1.CHINH QUY; 2.LIEN THONG): ");
+        int chon = sc.nextInt();
+        SinhVien sv;
+        if (chon == 1) {
+            sv = new SinhVienCQ();
+        } else {
+            sv = new SinhVienLT();
+        }
+        sv.nhap();
+
+        ds = Arrays.copyOf(ds, siso + 1);
+        ds[siso] = sv;
+        siso++;
+    }
+
+    public void themvaodanhsach(SinhVien sv) { //co tham so 
+        ds = Arrays.copyOf(ds, siso + 1);
+        ds[siso] = sv;
+        siso++;
+    }
+    
+
+    //----Ham xoa sinh vien----
+    public void xoasv() { //ko co tham so 
+        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ma SV muon xoa: ");
+        long maxoa = sc.nextLong();
+        
+        int vitri = -1;
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getMssv() == maxoa) {
+                vitri = i;
+                break;
+            }
+        }
+        if (vitri == -1) {
+            System.out.println("Khong tim thay sinh vien!");
+            return;
+        }
+        for (int i = vitri; i < siso - 1; i++) {
+            ds[i] = ds[i + 1];
+        }
+        ds = Arrays.copyOf(ds, siso - 1);
+        siso--;
+        System.out.println("Xoa thanh cong!");
+    }
+
+    public void xoasv(long maxoa) { //co tham so 
+        int vitri = -1;
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getMssv() == maxoa) {
+                vitri = i;
+                break;
+            }
+        }
+        if (vitri == -1) {
+            System.out.println("Khong tim thay sinh vien!");
+            return;
+        }
+    
+        for (int i = vitri; i < siso - 1; i++) {
+            ds[i] = ds[i + 1];
+        }
+        ds = Arrays.copyOf(ds, siso - 1);
+        siso--;
+        System.out.println("Xoa thanh cong!");
+    }
+    
+    //----Ham sua sinh vien----
+    public void suasv() {
+        @SuppressWarnings("resource")
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ma SV muon sua: ");
+        long masua = sc.nextLong();
+        sc.nextLine(); // Bỏ dòng trống sau nextLong
+    
+        int vitri = -1;
+        for (int i = 0; i < siso; i++) {
+            if (ds[i].getMssv() == masua) {
+                vitri = i;
+                break;
+            }
+        }
+    
+        if (vitri == -1) {
+            System.out.println("Khong tim thay sinh vien!");
+            return;
+        }
+    
+        // Nhập lại thông tin mới
+        System.out.print("Nhap ho moi: ");
+        String ho = sc.nextLine();
+        System.out.print("Nhap ten moi: ");
+        String ten = sc.nextLine();
+        System.out.print("Nhap ngay sinh moi: ");
+        String ngaysinh = sc.nextLine();
+        System.out.print("Nhap gioi tinh moi: ");
+        String gioitinh = sc.nextLine();
+    
+        // Gán lại thông tin (giữ nguyên kiểu SinhVienCQ hoặc LT)
+        ds[vitri].setHo(ho);
+        ds[vitri].setTen(ten);
+        ds[vitri].setNgaysinh(ngaysinh);
+        ds[vitri].setGioitinh(gioitinh);
+    
+        // Nếu là sinh viên chính quy thì cho sửa thêm điểm rèn luyện
+        if (ds[vitri] instanceof SinhVienCQ) {
+            System.out.print("Nhap diem ren luyen moi: ");
+            int drl = sc.nextInt();
+            ((SinhVienCQ) ds[vitri]).setDrl(drl);
+        }
+    
+        // Nếu là sinh viên liên thông thì cho sửa thêm năm tốt nghiệp và ngành 
+        if (ds[vitri] instanceof SinhVienLT) {
+            System.out.print("Nhap nam tot nghiep moi: ");
+            int namTN = sc.nextInt();
+            ((SinhVienLT) ds[vitri]).setNamtn(namTN);
+            System.out.print("Nhap nganh moi: ");
+            String Nganh = sc.nextLine();
+            ((SinhVienLT) ds[vitri]).setNganh(Nganh);
+        }
+    
+        System.out.println("Sua thong tin thanh cong!");
+    }
+    
+}
