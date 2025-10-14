@@ -1,5 +1,8 @@
 package DoAn;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class KhachHang {
@@ -8,7 +11,7 @@ public class KhachHang {
     private String ten;
     private String dchi;
     private long sdt;
-    private int namsinh;
+    private String ngaysinh;
 
     public KhachHang(){
         this.makh=0;
@@ -16,15 +19,15 @@ public class KhachHang {
         this.ten="";
         this.dchi="";
         this.sdt=0;
-        this.namsinh=0;
+        this.ngaysinh="";
     }
-    public KhachHang(long makh,String ho,String ten,String dchi,long sdt,int namsinh){
+    public KhachHang(long makh,String ho,String ten,String dchi,long sdt,String ngaysinh){
         this.makh=makh;
         this.ho=ho;
         this.ten=ten;
         this.dchi=dchi;
         this.sdt=sdt;
-        this.namsinh=namsinh;
+        this.ngaysinh=ngaysinh;
     }
     
     public void nhap(){
@@ -41,12 +44,24 @@ public class KhachHang {
         sc.nextLine();
         System.out.print("\nSo dien thoai: ");
         sc.nextLong();
-        System.out.print("\nNam sinh: ");
-        sc.nextInt();
+        sc.nextLine();
+        System.out.print("\nNgay sinh(dd/MM/yyyy): ");
+        sc.nextLine();
     }
 
     public void xuat(){
-        System.out.printf("%-10d %-10s %-5s %-10s %-10d %-10d%n");
+        System.out.printf("%-10d %-10s %-5s %-10s %-10d %-10s",
+        makh,ho,ten,dchi,sdt,ngaysinh);
+
+        System.out.println("Tuoi cua khach hang: " + age());
+    }
+
+    //----Hàm Tính Tuổi----
+    public int age(){
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate birthDate = LocalDate.parse(ngaysinh, df);
+        LocalDate today = LocalDate.now();
+        return Period.between(birthDate, today).getYears();
     }
 
     //----Hàm get/set----
@@ -65,8 +80,8 @@ public class KhachHang {
     public long getSdt(){
         return sdt;
     }
-    public int getNamsinh(){
-        return namsinh;
+    public String getNgaysinh(){
+        return ngaysinh;
     }
 
     public void setMakh(long makh_x){
@@ -84,7 +99,7 @@ public class KhachHang {
     public void setSdt(long sdt_x){
         sdt=sdt_x;
     }
-    public void setNamsinh(int namsinh_x){
-        namsinh=namsinh_x;
+    public void setNgaysinh(String ngaysinh_x){
+        ngaysinh=ngaysinh_x;
     }
 }

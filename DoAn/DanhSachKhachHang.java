@@ -79,38 +79,106 @@ public class DanhSachKhachHang {
     
     //----Ham sua khach hang----
     public void suasv() {
-    @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
-    Scanner sc = new Scanner(System.in);
-    System.out.print("Nhap ma KH muon sua: ");
-    long masua = sc.nextLong();
-    int vitri = -1;
-    for (int i = 0; i < soluong; i++) {
-        if (kh[i].getMakh() == masua) {
-            vitri = i;
-            break;
+        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ma KH muon sua: ");
+        long masua = sc.nextLong();
+        int vitri = -1;
+        for (int i = 0; i < soluong; i++) {
+            if (kh[i].getMakh() == masua) {
+                vitri = i;
+                break;
+            }
         }
-    }
-    if (vitri == -1) {
-        System.out.println("Khong tim thay khach hang!");
-        return;
-    }
-    System.out.print("\nNhap ma khach hang moi: ");
-    long makh = sc.nextLong();
-    sc.nextLine();
-    System.out.print("Nhap ho moi: ");
-    String ho = sc.nextLine();
-    System.out.print("Nhap ten moi: ");
-    String ten = sc.nextLine();
-    System.out.print("Nhap dia chi moi: ");
-    String dchi = sc.nextLine();
-    System.out.print("Nhap so dien thoai moi: ");
-    long sdt = sc.nextLong();
-    sc.nextLine();
-    System.out.print("Nhap nam sinh moi: ");
-    int namsinh = sc.nextInt();
+        if (vitri == -1) {
+            System.out.println("Khong tim thay khach hang!");
+            return;
+        }
+        System.out.print("\nNhap ma khach hang moi: ");
+        long makh = sc.nextLong();
+        sc.nextLine();
+        System.out.print("Nhap ho moi: ");
+        String ho = sc.nextLine();
+        System.out.print("Nhap ten moi: ");
+        String ten = sc.nextLine();
+        System.out.print("Nhap dia chi moi: ");
+        String dchi = sc.nextLine();
+        System.out.print("Nhap so dien thoai moi: ");
+        long sdt = sc.nextLong();
+        sc.nextLine();
+        System.out.print("Nhap ngay sinh moi(dd/MM/yyyy): ");
+        String ngaysinh = sc.nextLine();
 
-    kh[vitri] = new KhachHang(makh,ho,ten,dchi,sdt,namsinh);
+        kh[vitri] = new KhachHang(makh,ho,ten,dchi,sdt,ngaysinh);
 
-    System.out.println("Sua thong tin thanh cong!");
-}
+        System.out.println("Sua thong tin thanh cong!");
+    }
+    
+    //----Ham tim khach hang theo makh----
+    public void timTheoma() {
+        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ma Khach Hang muon tim: ");
+        int matim = sc.nextInt();
+        for (int i = 0; i < soluong; i++) {
+            if (kh[i].getMakh() == matim) {
+                kh[i].xuat();
+                return;
+            }
+        }
+        System.out.println("Khong tim thay Khach Hang!");
+    }
+
+    //----Ham tim khach hang theo Ten----
+    public void timTheoten() {
+        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ten (hoac ten mot phan) cua khach hang muon tim: ");
+        String tentim = sc.nextLine().toLowerCase();
+
+        for (int i = 0; i < soluong; i++) {
+            if (kh[i].getTen().toLowerCase().contains(tentim)) {
+                // dùng contains để tìm gần đúng
+                System.out.println("Tim thay khach hang:");
+                kh[i].xuat();
+                System.out.println("---------------------------");
+            }
+        }
+        System.out.println("Khong tim thay khach hang nao co ten phu hop!");
+    }
+
+    //----Ham tim khach hang theo ho----
+    public void timTheoho() {
+        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ho (hoac ten mot phan) cua khach hang muon tim: ");
+        String hotim = sc.nextLine().toLowerCase();
+
+        for (int i = 0; i < soluong; i++) {
+            if (kh[i].getTen().toLowerCase().contains(hotim)) {
+                // dùng contains để tìm gần đúng
+                System.out.println("Tim thay khach hang:");
+                kh[i].xuat();
+                System.out.println("---------------------------");
+            }
+        }
+        System.out.println("Khong tim thay khach hang nao co ho phu hop!");
+    }
+
+    //----Ham tim khach hang theo sdt----
+    public void timTheosdt() {
+        @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap so dien thoai Khach Hang muon tim: ");
+        int sdttim = sc.nextInt();
+        for (int i = 0; i < soluong; i++) {
+            if (kh[i].getMakh() == sdttim) {
+                kh[i].xuat();
+                return;
+            }
+        }
+        System.out.println("Khong tim thay Khach Hang!");
+    }
+
+
 }
