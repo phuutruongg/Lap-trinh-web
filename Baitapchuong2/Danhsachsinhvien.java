@@ -229,6 +229,6 @@ public class Danhsachsinhvien {
             default: System.out.println("Lua chon khong hop le!");
         }
     } while (chon != 0);
-}
+    }
 
 }

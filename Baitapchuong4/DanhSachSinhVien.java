@@ -524,4 +524,47 @@ public class DanhSachSinhVien {
         System.out.println("Tu 50 den 80 diem: " + tu50den80 + " sinh vien");
         System.out.println("Tu 80 diem tro len: " + tren80 + " sinh vien");
     }
+    public void menu() {
+        nhapdssv(); // nhập danh sách ban đầu (nếu bạn muốn)
+
+        int chon;
+        do {
+            @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
+            Scanner sc = new Scanner(System.in);
+            System.out.println("\n---- MENU ----");
+            System.out.println("1. Xuat danh sach");
+            System.out.println("2. Them sinh vien");
+            System.out.println("3. Xoa sinh vien");
+            System.out.println("4. Tim sinh vien");
+            System.out.println("5. Sua Sinh vien");
+            System.out.println("6. Tim theo Ho");
+            System.out.println("7. Tim theo Ten");
+            System.out.println("8. Tim theo nam Tot nghiep");
+            System.out.println("9. Tim theo Diem Ren Luyen");
+            System.out.println("10. Thong ke gioi tinh");
+            System.out.println("11. Thong ke theo nhom tuoi");
+            System.out.println("12.Thong ke theo Diem Ren Luyen");
+            System.out.println("0. Thoat");
+            System.out.print("Lua chon: ");
+            chon = sc.nextInt();
+            sc.nextLine();
+            
+        switch (chon) {
+            case 1: xuatds(); break;
+            case 2: themvaodanhsach(); break;
+            case 3: xoasv(); break;
+            case 4: tim(); break;
+            case 5: suasv(); break;
+            case 6: timTheoHo(); break;
+            case 7: timTheoTen(); break;
+            case 8: timTheoDrl(); break;
+            case 9: timTheoNamTN(); break;
+            case 10: thongKeGioiTinh(); break;
+            case 11: thongKeTheoNhomTuoi(); break;
+            case 12: thongKeTheoDrl(); break;
+            case 0: System.out.println("Thoat!"); break;
+            default: System.out.println("Lua chon khong hop le!");
+        }
+    } while (chon != 0);
+    }
 }
