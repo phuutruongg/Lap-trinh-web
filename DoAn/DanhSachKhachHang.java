@@ -1,5 +1,6 @@
 package DoAn;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -114,6 +115,8 @@ public class DanhSachKhachHang {
         System.out.println("Sua thong tin thanh cong!");
     }
     
+    //--------CÁC HÀM TÌM-----------
+
     //----Ham tim khach hang theo makh----
     public void timTheoma() {
         @SuppressWarnings("resource")//Dòng bỏ qua cái sc vàng 
@@ -122,8 +125,9 @@ public class DanhSachKhachHang {
         int matim = sc.nextInt();
         for (int i = 0; i < soluong; i++) {
             if (kh[i].getMakh() == matim) {
+                System.out.println("Tim thay khach hang:");
                 kh[i].xuat();
-                return;
+                System.out.println("---------------------------");
             }
         }
         System.out.println("Khong tim thay Khach Hang!");
@@ -173,12 +177,136 @@ public class DanhSachKhachHang {
         int sdttim = sc.nextInt();
         for (int i = 0; i < soluong; i++) {
             if (kh[i].getMakh() == sdttim) {
+                System.out.println("Tim thay khach hang:");
                 kh[i].xuat();
-                return;
+                System.out.println("---------------------------");
             }
         }
         System.out.println("Khong tim thay Khach Hang!");
     }
 
+    //---------CÁC HÀM THỐNG KÊ----------
 
+    //----hàm thống kê khách hàng theo tuổi----
+    public void thongKeTheoNhomTuoi() {
+        int duoi20 = 0;
+        int tu20den29 = 0;
+        int tren30 = 0;
+    
+        for (int i = 0; i < soluong; i++) {
+            int tuoi = kh[i].age();  // Gọi hàm age() của từng sinh viên
+    
+            if (tuoi < 20) {
+                duoi20++;
+            } else if (tuoi < 30) {
+                tu20den29++;
+            } else {
+                tren30++;
+            }
+        }
+    
+        System.out.println("----- Thong ke theo nhom tuoi -----");
+        System.out.println("Duoi 20 tuoi: " + duoi20 + " sinh vien");
+        System.out.println("Tu 20 den 29 tuoi: " + tu20den29 + " sinh vien");
+        System.out.println("Tu 30 tuoi tro len: " + tren30 + " sinh vien");
+    }
+
+    //----Hàm thống kê theo Họ----
+    public void thongKeTheoHo() {
+        String[] cacHo = new String[0]; // Mảng chứa các họ khác nhau
+        int[] demHo = new int[0];       // Mảng chứa số lượng tương ứng
+    
+        for (int i = 0; i < soluong; i++) {
+            String ho = kh[i].getHo().trim(); // Lấy họ của khách hàng
+            boolean daCo = false;
+    
+            for (int j = 0; j < cacHo.length; j++) {
+                if (cacHo[j].equalsIgnoreCase(ho)) {
+                    demHo[j]++;
+                    daCo = true;
+                    break;
+                }
+            }
+    
+            if (!daCo) { // Nếu họ này chưa có trong mảng
+                cacHo = Arrays.copyOf(cacHo, cacHo.length + 1);
+                demHo = Arrays.copyOf(demHo, demHo.length + 1);
+                cacHo[cacHo.length - 1] = ho;
+                demHo[demHo.length - 1] = 1;
+            }
+        }
+    
+        // In kết quả
+        System.out.println("----- Thong ke theo Ho -----");
+        for (int i = 0; i < cacHo.length; i++) {
+            System.out.println(cacHo[i] + ": " + demHo[i] + " khach hang");
+        }
+    }
+    
+    //----Hàm thống kê theo Tên----
+    public void thongKeTheoTen() {
+        String[] cacTen = new String[0]; // Mảng chứa các tên khác nhau
+        int[] demTen = new int[0];       // Mảng chứa số lượng tương ứng
+    
+        for (int i = 0; i < soluong; i++) {
+            String ten = kh[i].getTen().trim(); // Lấy ten của khách hàng
+            boolean daCo = false;
+    
+            for (int j = 0; j < cacTen.length; j++) {
+                if (cacTen[j].equalsIgnoreCase(ten)) {
+                    demTen[j]++;
+                    daCo = true;
+                    break;
+                }
+            }
+    
+            if (!daCo) { // Nếu tên này chưa có trong mảng
+                cacTen = Arrays.copyOf(cacTen, cacTen.length + 1);
+                demTen = Arrays.copyOf(demTen, demTen.length + 1);
+                cacTen[cacTen.length - 1] = ten;
+                demTen[demTen.length - 1] = 1;
+            }
+        }
+    
+        // In kết quả
+        System.out.println("----- Thong ke theo Ho -----");
+        for (int i = 0; i < cacTen.length; i++) {
+            System.out.println(cacTen[i] + ": " + demTen[i] + " khach hang");
+        }
+    }
+
+    //----thống kê khách hàng có sinh nhật trong tháng này----
+    public void thongKeSinhNhatTrongThangHienTai() {
+        int thangHienTai = LocalDate.now().getMonthValue(); // Lấy tháng hiện tại (1–12)
+        int dem = 0;
+
+        System.out.println("----- Danh sach khach hang co sinh nhat trong thang " + thangHienTai + " -----");
+
+        for (int i = 0; i < soluong; i++) {
+            // Lấy chuỗi ngày sinh, tách ra phần tháng
+            String[] parts = kh[i].getNgaysinh().split("/");
+
+            // Kiểm tra chuỗi có đúng định dạng dd/MM/yyyy không
+            if (parts.length == 3) {
+                try {
+                    int thangSinh = Integer.parseInt(parts[1]);
+                    if (thangSinh == thangHienTai) {
+                        kh[i].xuat(); // in ra thông tin khách hàng
+                        dem++;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Loi dinh dang ngay sinh cua khach hang thu " + (i + 1));
+                }
+            } else {
+                System.out.println("Ngay sinh cua khach hang thu " + (i + 1) + " khong dung dinh dang dd/MM/yyyy!");
+            }
+        }
+
+        if (dem == 0) {
+            System.out.println("Khong co khach hang nao co sinh nhat trong thang nay.");
+        } else {
+            System.out.println("Tong cong co " + dem + " khach hang co sinh nhat trong thang nay.");
+        }
+    }
+    
 }
