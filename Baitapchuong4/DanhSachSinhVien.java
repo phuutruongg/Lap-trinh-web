@@ -31,11 +31,14 @@ public class DanhSachSinhVien {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap so luong sinh vien: ");
         int n = sc.nextInt(); sc.nextLine();
-        System.out.print("\nBan muon nhap sinh vien nao ? (1.CHINH QUY; 2.LIEN THONG): ");
-        int chon = sc.nextInt();
+        
         ds = new SinhVien[n];
         siso = n;
         for (int i=0;i<n;i++){
+            System.out.println("\n--- Nhap sinh vien thu " + (i + 1) + " ---");
+            System.out.print("Ban muon nhap sinh vien nao ? (1.CHINH QUY; 2.LIEN THONG): ");
+            int chon = sc.nextInt();
+            sc.nextLine(); // bỏ dòng trống sau khi nhập số
             if (chon == 1){
                 ds[i]= new SinhVienCQ();
                 ds[i].nhap();
@@ -502,28 +505,28 @@ public class DanhSachSinhVien {
     
     //----Hàm thống kê theo xếp loại drl----
     public void thongKeTheoDrl() {
-        int duoi50 = 0;
-        int tu50den80 = 0;
-        int tren80 = 0;
+        int trungbinh = 0;
+        int kha = 0;
+        int gioi = 0;
     
         for (int i = 0; i < siso; i++) {
             // Kiểm tra xem sinh viên này có phải là sinh viên CQ không
             if (ds[i] instanceof SinhVienCQ){
                 SinhVienCQ sv = (SinhVienCQ) ds[i];
                 if (sv.getDrl() < 50) {
-                    duoi50++;
+                    trungbinh++;
                 } else if (sv.getDrl() < 80) {
-                    tu50den80++;
+                    kha++;
                 } else {
-                    tren80++;
+                    gioi++;
                 }
             }
         }
     
         System.out.println("----- Thong ke theo xep loai diem ren luyen -----");
-        System.out.println("Duoi 50 diem: " + duoi50 + " sinh vien");
-        System.out.println("Tu 50 den 80 diem: " + tu50den80 + " sinh vien");
-        System.out.println("Tu 80 diem tro len: " + tren80 + " sinh vien");
+        System.out.println("Trung binh: " + trungbinh + " sinh vien");
+        System.out.println("Kha: " + kha + " sinh vien");
+        System.out.println("Gioi: " + gioi + " sinh vien");
     }
     public void menu() {
         nhapdssv(); // nhập danh sách ban đầu (nếu bạn muốn)

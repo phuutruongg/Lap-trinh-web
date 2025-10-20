@@ -30,7 +30,8 @@ public class SinhVienCQ extends SinhVien {
     //-----Hàm Xuất(override)----
     @Override public void xuat(){
         super.xuat();
-        System.out.print("\nDiem ren luyen: "+ drl);
+        System.out.printf("%-10d",
+            drl);
     }
     
     //-----Ham get----

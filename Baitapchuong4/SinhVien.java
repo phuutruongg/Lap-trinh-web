@@ -56,9 +56,8 @@ abstract public class SinhVien {
 
     //----Hàm Xuất----
     public void xuat() {
-        System.out.printf("%-10d %-10s %-5s %-10s %-10s",
-            mssv, ho, ten, gioitinh, ngaysinh);
-        System.out.println("Tuoi cua sinh vien: " + age());
+        System.out.printf("%-10d %-10s %-5s %-10s %-10s %-10d",
+            mssv, ho, ten, gioitinh, ngaysinh,age());
     }
 
     //----Hàm Tính Tuổi----

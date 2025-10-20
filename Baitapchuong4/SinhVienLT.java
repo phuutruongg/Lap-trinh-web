@@ -24,6 +24,7 @@ public class SinhVienLT extends SinhVien{
     }
 
     @Override public void nhap(){
+        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         super.nhap();
         System.out.print("Nhap nam Tot Nghiep: ");
@@ -31,12 +32,11 @@ public class SinhVienLT extends SinhVien{
         sc.nextLine();
         System.out.print("\nNhap Nganh: ");
         Nganh = sc.nextLine();
-        sc.close();
     }
     @Override public void xuat(){
         super.xuat();
-        System.out.print("\nNam Tot Nghiep: "+ namTN);
-        System.out.print("\nNganh hoc: "+Nganh);
+        System.out.printf("%-10d %-10s",
+            namTN,Nganh);
     }
 
     //----Ham get----
