@@ -364,6 +364,7 @@ public class DanhSachSinhVien {
     
         return ketqua; // trả về mảng kết quả
     }
+
     public SinhVien[] timTheoDrl(int drltim) {//có tham số
     
         SinhVien[] ketqua = new SinhVien[0]; // mảng rỗng ban đầu
@@ -477,26 +478,26 @@ public class DanhSachSinhVien {
 
     //----Hàm thống kê theo tuổi----
     public void thongKeTheoNhomTuoi() {
-        int duoi20 = 0;
-        int tu20den29 = 0;
-        int tren30 = 0;
+        int duoi18 = 0;
+        int tu18den23 = 0;
+        int tren23 = 0;
     
         for (int i = 0; i < siso; i++) {
             int tuoi = ds[i].age();  // Gọi hàm age() của từng sinh viên
     
-            if (tuoi < 20) {
-                duoi20++;
+            if (tuoi < 18) {
+                duoi18++;
             } else if (tuoi < 30) {
-                tu20den29++;
+                tu18den23++;
             } else {
-                tren30++;
+                tren23++;
             }
         }
     
         System.out.println("----- Thong ke theo nhom tuoi -----");
-        System.out.println("Duoi 20 tuoi: " + duoi20 + " sinh vien");
-        System.out.println("Tu 20 den 29 tuoi: " + tu20den29 + " sinh vien");
-        System.out.println("Tu 30 tuoi tro len: " + tren30 + " sinh vien");
+        System.out.println("Duoi 18 tuoi: " + duoi18 + " sinh vien");
+        System.out.println("Tu 18 den 23 tuoi: " + tu18den23 + " sinh vien");
+        System.out.println("Tu 30 tuoi tro len: " + tren23 + " sinh vien");
     }
     
     //----Hàm thống kê theo xếp loại drl----
